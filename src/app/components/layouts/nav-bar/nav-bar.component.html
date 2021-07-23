@@ -1,0 +1,205 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a [routerLink]="['/']" class="brand-link">
+        <img src="assets/images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">AdminLTE 3</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="assets/images/user.png" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">Alexander Pierce</a>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                <li class="nav-item">
+                    <a [routerLink]="['/dashboard']" class="nav-link" [routerLinkActive]="['active']">
+                        <i class="nav-icon fa fa-tachometer"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link" [routerLinkActive]="['active']">
+                        <i class="nav-icon fa fa-tachometer"></i>
+                        <p>
+                            Add New
+                            <i class="right fa fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview ml-3">
+                        <li class="nav-item">
+                            <a [routerLink]="['/add-lessor']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Add Lessor</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/add-lessee']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Add Lessee</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/add-worksite']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Add WorkSite</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/add-supplier']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Add Supplier</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link" [routerLinkActive]="['active']">
+                        <i class="nav-icon fa fa-tachometer"></i>
+                        <p>
+                            Material Movement
+                            <i class="right fa fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview ml-3">
+                        <li class="nav-item">
+                            <a [routerLink]="['/add-rentout']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Rent Out</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/add-materialreturn']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Material Return</p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>
+                                    Material Transfer
+                                    <i class="right fa fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview ml-3">
+                                <li class="nav-item">
+                                    <a [routerLink]="['/add-materialtranfer']" class="nav-link">
+                                        <i class="fa fa-circle nav-icon"></i>
+                                        <p>Inventory Material</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a [routerLink]="['/add-materialconsumable']" class="nav-link">
+                                        <i class="fa fa-circle nav-icon"></i>
+                                        <p>Consumable Material</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/add-materialpurchase']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Material Purchasing</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link" [routerLinkActive]="['active']">
+                        <i class="nav-icon fa fa-tachometer"></i>
+                        <p>
+                            Cash movement
+                            <i class="right fa fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview ml-3">
+                        <li class="nav-item">
+                            <a [routerLink]="['/paymentcertificate']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Payment Certificate</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/paymentreview']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Payment Review</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link" [routerLinkActive]="['active']">
+                        <i class="nav-icon fa fa-tachometer"></i>
+                        <p>
+                            Stock Management & Review
+                            <i class="right fa fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview ml-3">
+                        <li class="nav-item">
+                            <a [routerLink]="['/add-initialstock']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Add Initial Stock</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/add-reviewstock']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Review Stock</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link" [routerLinkActive]="['active']">
+                        <i class="nav-icon fa fa-tachometer"></i>
+                        <p>
+                            Quick Review
+                            <i class="right fa fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview ml-3">
+                        <li class="nav-item">
+                            <a [routerLink]="['/lesseeprofile']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Lessee Profile</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/lessee-outstanding']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Lessee Outstanding</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/stock-at-store']" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Stock at store</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
