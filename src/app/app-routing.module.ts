@@ -20,6 +20,8 @@ import { AddReviewstockComponent } from './components/add-reviewstock/add-review
 import { LesseeprofileComponent } from './components/lesseeprofile/lesseeprofile.component';
 import { LesseeOutstandingComponent } from './components/lessee-outstanding/lessee-outstanding.component';
 import { StockAtStoreComponent } from './components/stock-at-store/stock-at-store.component';
+import { AddMaterialComponent } from './components/add-material/add-material.component';
+import { AddRentinComponent } from './components/add-rentin/add-rentin.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -29,6 +31,7 @@ const routes: Routes = [
   {path: 'add-worksite', component: AddWorksiteComponent},
   {path: 'add-supplier', component: AddSupplierComponent},
   {path: 'add-rentout', component: AddRentoutComponent},
+  {path:'add-rentin',component: AddRentinComponent},
   {path: 'add-materialreturn', component: AddMaterialreturnComponent},
   {path: 'add-materialtranfer', component: AddMaterialtranferComponent},
   {path: 'add-materialpurchase', component: AddMaterialpurchaseComponent},
@@ -36,6 +39,8 @@ const routes: Routes = [
   {path: 'paymentcertificate', component: PaymentcertificateComponent},
   {path: 'paymentreview', component: PaymentreviewComponent},
   {path: 'add-initialstock', component: AddInitialstockComponent},
+  {path: 'add-material', component: AddMaterialComponent},
+
   {path: 'add-reviewstock', component: AddReviewstockComponent},
   {path: 'lesseeprofile', component: LesseeprofileComponent},
   {path: 'lessee-outstanding', component: LesseeOutstandingComponent},

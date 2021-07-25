@@ -18,9 +18,6 @@
 
   <div class="card">
     <div class="card-body">
-
-      <form>
-
         <div class="form-group row">
           <div class="col-sm-7 col-md-8"></div>
           <label class="col-sm-2 col-md-1 col-form-label">Ref.no</label>
@@ -32,51 +29,57 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Name in Short</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="lessee.shortName">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Full Name</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="lessee.fullName ">
           </div>
         </div>
 
         <h6 class="my-4"><b>Name of the organization if any</b></h6>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" [(ngModel)]="lessee.organizationName">
+          </div>
+        </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">NIC No</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="lessee.identityNo">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Address</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="lessee.address">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Contact No 1</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="lessee.contactNo1">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Contact No 2</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="lessee.contactNo2">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Agreement Ref</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="lessee.agreementRef">
           </div>
         </div>
 
@@ -85,42 +88,42 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Name</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="lessee.gurantorName">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Contact No</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="lessee.gurantorContactNo">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">NIC No</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="lessee.gurantorIdentityNo ">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Address</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="lessee.gurantorAddress ">
           </div>
         </div>
 
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Remrks</label>
+          <label class="col-sm-2 col-form-label">Remarks</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="lessee.remarks">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Others</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="lessee.others">
           </div>
         </div>
 
@@ -128,24 +131,14 @@
           <div class="col-10 offset-2">
             <div class="row">
               <div class="col-3">
-                <button class="btn btn-sm btn-success btn-block">Save</button>
-              </div>
+                <button class="btn btn-sm btn-success btn-block" (click)="save()">Save</button>
+              </div>            
               <div class="col-3">
-                <button class="btn btn-sm btn-info btn-block">Print</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-sm btn-danger btn-block">Cancel</button>
-              </div>
-              <div class="col-3">
-                <button class="btn btn-sm btn-dark btn-block">Back to menu</button>
+                <button class="btn btn-sm btn-danger btn-block" (cancel)="cancel()">Cancel</button>
               </div>
             </div>
           </div>
         </div>
-
-      </form>
-
     </div>
   </div>
-
 </section>

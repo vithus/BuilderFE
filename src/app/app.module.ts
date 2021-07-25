@@ -18,6 +18,14 @@ import { AddReviewstockComponent } from './components/add-reviewstock/add-review
 import { LesseeprofileComponent } from './components/lesseeprofile/lesseeprofile.component';
 import { LesseeOutstandingComponent } from './components/lessee-outstanding/lessee-outstanding.component';
 import { StockAtStoreComponent } from './components/stock-at-store/stock-at-store.component';
+import { FormsModule } from '@angular/forms';
+import { LessorService } from './Service/lessorService';
+import { HttpClientModule } from '@angular/common/http';
+import { LesseeService } from './Service/lesseeService';
+import { AddMaterialComponent } from './components/add-material/add-material.component';
+import { MaterialService } from './Service/materialService';
+import { InventoryService } from './Service/inventoryService';
+import { AddRentinComponent } from './components/add-rentin/add-rentin.component';
 
 @NgModule({
   declarations: [
@@ -37,13 +45,22 @@ import { StockAtStoreComponent } from './components/stock-at-store/stock-at-stor
     AddReviewstockComponent,
     LesseeprofileComponent,
     LesseeOutstandingComponent,
-    StockAtStoreComponent
+    StockAtStoreComponent,
+    AddMaterialComponent,
+    AddRentinComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    LessorService,
+    LesseeService,
+    MaterialService,
+    InventoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
