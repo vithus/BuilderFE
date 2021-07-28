@@ -49,12 +49,12 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Material</label>
-                            <select class="form-control" [(ngModel)]="material">
+                            <select class="form-control" [(ngModel)]="material" (change)="materialChanged()">
                                 <option *ngFor="let item of materials" [value]="item.id">{{item.name}}</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-">
                         <div class="form-group">
                             <label>Quantity</label>
                             <input type="text" class="form-control" [(ngModel)]="quantity">
@@ -90,6 +90,8 @@
                         <th scope="col">Material</th>
                         <th scope="col">Qty</th>
                         <th scope="col">Unit</th>
+                        <th scope="col">Rental Per Unit</th>
+                        <th scope="col">Total</th>
                         <th scope="col">Remarks</th>
                         <th scope="col">Delete</th>
                     </tr>
@@ -100,6 +102,8 @@
                         <td>{{item.materialName}}</td>
                         <td>{{item.quantity}}</td>
                         <td>{{item.unit}}</td>
+                        <td>{{item.rentalPerUnit}}</td>
+                        <td>{{item.rentalPerUnit * item.quantity}}</td>
                         <td>{{item.remark}}</td>
                         <td>
                             <a class="delete" title="Delete" data-toggle="tooltip" style="cursor: pointer;"
@@ -124,11 +128,20 @@
                     <input type="text" class="form-control" [(ngModel)]="rentIn.labourCharge">
                 </div>
             </div>
-
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Number Of Day</label>
+                <label class="col-sm-2 col-form-label">Date</label>
                 <div class="col-sm-3 col-sm-3">
-                    <input type="text" class="form-control" [(ngModel)]="rentIn.transportCharge">
+                    <input matInput [matDatepicker]="picker"  disabled (dateChange)="dateChanged($event)">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker disabled="false"></mat-datepicker>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Due Date</label>
+                <div class="col-sm-3 col-sm-3">
+                    <input matInput [matDatepicker]="picker1" disabled (dateChange)="dueDateChanged($event)">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1 disabled="false"></mat-datepicker>
                 </div>
             </div>
 
@@ -157,7 +170,7 @@
                 <div class="col-10 offset-2">
                     <div class="row">
                         <div class="col-3">
-                            <button class="btn btn-sm btn-success btn-block">Save</button>
+                            <button class="btn btn-sm btn-success btn-block" (click)="save()">Save</button>
                         </div>
                         <div class="col-3">
                             <button class="btn btn-sm btn-danger btn-block">Cancel</button>

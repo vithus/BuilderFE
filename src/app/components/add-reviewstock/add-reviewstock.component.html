@@ -1,1 +1,88 @@
-<p>add-reviewstock works!</p>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Rent In</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Review Stock</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Lessor</label>
+                            <select class="form-control" [(ngModel)]="selectedLessorId" (change)="lessorChanged()">
+                                <option *ngFor="let item of lessors" [value]="item.id">{{item.fullName}}</option>
+                            </select>
+                        </div>
+                    </div>                  
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="float: left;">
+                        <button type="button" class="btn btn-info add-new" (click)="getStock()"><i class="fa fa-filter"></i>
+                            Filter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section  class="content" style="margin-top: 10px;">
+    <div class="card">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let material of materials | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItemCount }; let i = index">    
+        </div>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">S/No</th>
+                    <th scope="col">Material</th>
+                    <th scope="col">Unit</th>
+                    <th scope="col">Rental Per Unit</th>  
+                    <th scope="col">Quantity</th>            
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let material of materials | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItemCount }; let i = index">
+                    <td>{{material.code}}</td>
+                    <td>{{material.name}}</td>
+                    <td>{{material.unit}}</td>
+                    <td>{{material.rentalPrice}}</td>
+                    <td>{{material.quantity}}</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="pull-left">
+            <div class="form-group row">
+              <label class="col-4 col-form-label"><small>Entries per page</small></label>
+              <div class="col-3">
+                <input type="number" class="form-control" [(ngModel)]="itemsPerPage" min="1" (change)="changePerPageValue(itemsPerPage)">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="pull-right">
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

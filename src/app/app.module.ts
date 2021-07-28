@@ -26,6 +26,14 @@ import { AddMaterialComponent } from './components/add-material/add-material.com
 import { MaterialService } from './Service/materialService';
 import { InventoryService } from './Service/inventoryService';
 import { AddRentinComponent } from './components/add-rentin/add-rentin.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { RentInService } from './Service/rentInService';
+import { RentOutService } from './Service/rentoutService';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -53,13 +61,22 @@ import { AddRentinComponent } from './components/add-rentin/add-rentin.component
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule ,
+    NgxPaginationModule
+  
   ],
   providers: [
     LessorService,
     LesseeService,
     MaterialService,
-    InventoryService
+    InventoryService,
+    RentInService,
+    RentOutService
   ],
   bootstrap: [AppComponent]
 })
