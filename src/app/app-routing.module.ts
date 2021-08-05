@@ -23,9 +23,12 @@ import { StockAtStoreComponent } from './components/stock-at-store/stock-at-stor
 import { AddMaterialComponent } from './components/add-material/add-material.component';
 import { AddRentinComponent } from './components/add-rentin/add-rentin.component';
 import { RentinMaterialreturnComponent } from './components/rentin-materialreturn/rentin-materialreturn.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  //{path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: '', pathMatch: 'full', redirectTo: 'login' },
+  {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'add-lessee', component: AddLesseeComponent},
   {path: 'add-lessor', component: AddLessorComponent},
