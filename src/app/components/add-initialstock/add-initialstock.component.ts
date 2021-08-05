@@ -14,10 +14,18 @@ export class AddInitialstockComponent implements OnInit {
   materials:any[] = [];
   materialId : any = null;
   inventory : Inventory = new Inventory();
+
+  inventoryMaterials : Material[] =[];
+  itemsPerPage = 12;
+  currentPage = 1;
+  totalItemCount = 0;
+
   constructor(private materialService: MaterialService, private inventoryService: InventoryService) { }
+
 
   ngOnInit(): void {
     this.getMaterials();
+    this.getStock();
   }
 
   getMaterials() {
@@ -42,6 +50,7 @@ export class AddInitialstockComponent implements OnInit {
       if(!data.isError) {
         alert("Material has been created Successfully");
         this.inventory = new Inventory();
+        this.getStock();
         
       }
     },(error)=>{
@@ -52,6 +61,31 @@ export class AddInitialstockComponent implements OnInit {
 
   cancel(){
     this.inventory = new Inventory();
+  }
+
+  getStock() {
+    this.materialService.getPaginatedLessorMaterial(null,this.currentPage,this.itemsPerPage).subscribe((data: any) => {
+      if (!data.isError) {
+        debugger;
+        this.totalItemCount = data.result.count;
+        this.inventoryMaterials = data.result.data;
+        console.log(this.inventoryMaterials)
+      }
+    })
+  }
+
+  pageChanged(event:any) {
+    this.materials = [];
+    this.currentPage = event;
+    this.getStock();
+  }
+
+  changePerPageValue(page:any) {
+    if (page != 0 && page !== null) {
+      this.materials = [];
+      this.currentPage = 1;
+      this.getStock();
+    }
   }
 
 }

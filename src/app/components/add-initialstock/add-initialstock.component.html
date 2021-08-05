@@ -49,48 +49,46 @@
             </div>
         </div>
       </div>
-    <div class="card">
-        <div class="card-body">
-                <table class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">S/No</th>
-                            <th scope="col">Material</th>
-                            <th scope="col">Qty</th>
-                            <th scope="col">Unit</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">Remarks</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                    </tbody>
-                </table>       
-
+      <div class="card">
+        <div class="row">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">S/No</th>
+                        <th scope="col">Material</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">Rental Per Unit</th>  
+                        <th scope="col">Quantity</th>            
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let material of inventoryMaterials | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItemCount }; let i = index">
+                        <td>{{material.code}}</td>
+                        <td>{{material.name}}</td>
+                        <td>{{material.unit}}</td>
+                        <td>{{material.rentalPrice}}</td>
+                        <td>{{material.quantity}}</td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="pull-left">
+                <div class="form-group row">
+                  <label class="col-4 col-form-label"><small>Entries per page</small></label>
+                  <div class="col-3">
+                    <input type="number" class="form-control" [(ngModel)]="itemsPerPage" min="1" (change)="changePerPageValue(itemsPerPage)">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="pull-right">
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
 
 </section>

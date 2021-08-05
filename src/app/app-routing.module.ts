@@ -22,6 +22,7 @@ import { LesseeOutstandingComponent } from './components/lessee-outstanding/less
 import { StockAtStoreComponent } from './components/stock-at-store/stock-at-store.component';
 import { AddMaterialComponent } from './components/add-material/add-material.component';
 import { AddRentinComponent } from './components/add-rentin/add-rentin.component';
+import { RentinMaterialreturnComponent } from './components/rentin-materialreturn/rentin-materialreturn.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -45,6 +46,8 @@ const routes: Routes = [
   {path: 'lesseeprofile', component: LesseeprofileComponent},
   {path: 'lessee-outstanding', component: LesseeOutstandingComponent},
   {path: 'stock-at-store', component: StockAtStoreComponent},
+  {path: 'rentin-materialreturn', component: RentinMaterialreturnComponent},
+
 ];
 
 @NgModule({

@@ -34,6 +34,8 @@ import { MatInputModule } from '@angular/material/input';
 import { RentInService } from './Service/rentInService';
 import { RentOutService } from './Service/rentoutService';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { RentalPaymentComponent } from './components/add-materialreturn/rental-payment/rental-payment.component';
+import { RentinMaterialreturnComponent } from './components/rentin-materialreturn/rentin-materialreturn.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     LesseeOutstandingComponent,
     StockAtStoreComponent,
     AddMaterialComponent,
-    AddRentinComponent
+    AddRentinComponent,
+    RentalPaymentComponent,
+    RentinMaterialreturnComponent
   ],
   imports: [
     BrowserModule,

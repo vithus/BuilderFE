@@ -1,9 +1,12 @@
 import * as moment from "moment";
+import { Material } from "./material";
+import { RentalReturn } from "./rentalReturn";
+import { RentoutPayment } from "./rentoutPayments";
 import { ValidationResult } from "./validationResult";
 
 export class RentOut{
-    Id:string|null=null;
-    LesseeId:string | null = null;
+    id:string|null=null;
+    lesseeId:string | null = null;
     dateString:string ='';
     dueDateString: string =  '';
     advance: number = 0;
@@ -11,11 +14,12 @@ export class RentOut{
     labourCharge: number =0;
     totalAmount: number =0;
     rentalDetails : RentalDetail[] = [];
+    rentalPayments:RentoutPayment[] = [];
     remark:string='';
 
     isValid(): ValidationResult {
         const result = new ValidationResult();
-        if(!this.LesseeId || this.LesseeId ===""){
+        if(!this.lesseeId || this.lesseeId ===""){
             result.status = false;
             result.message = "Lessee is required"
         }
@@ -36,7 +40,8 @@ export class RentOut{
 }
 
 export class RentalDetail {
-    Id:string|null=null;
+    isSelected:boolean = false;
+    id:string|null=null;
     materialId:string|null=null;
     materialName:string = '';
     quantity:number=0;
@@ -44,4 +49,11 @@ export class RentalDetail {
     remark:string | null=null;
     unit:string | null=null;
     lessorId: string|null=null;
+    fullyReturned: boolean = false;
+    rentalReturns: RentalReturn[]=[];
+    material :Material|null = null;
+    qtyToBeReturned:number =0;
+    qtyBeingReturned =0;
+
 }
+

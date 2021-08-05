@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Blank Page</h1>
+        <h1>Dashboard</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -14,12 +14,58 @@
   </div><!-- /.container-fluid -->
 </section>
 
-<section class="content">
 
-  <div class="card">
+<section  class="content" style="margin-top: 10px;">
+  <div class="card" style="margin-left: 10px;">
     <div class="card-body">
-      This is a sample template for shan...
+  <div class="row">
+     <h3>Overdue</h3>
+      <table class="table">
+          <thead class="thead-light">
+              <tr>
+                  <th scope="col">Lessee</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Gurantor</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">DueDate</th>
+                  <th scope="col">Advance</th>  
+                  <th scope="col">TotalAmount</th>            
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let rental of rentals; let i = index">
+                  <td>{{rental.lessee.fullName}}</td>
+                  <td>{{rental.lessee.contactNo1}}</td>
+                  <td>{{rental.lessee.gurantorName}}</td>
+                  <td>{{rental.lessee.gurantorContactNo}}</td>
+                  <td>{{rental.date}}</td>
+                  <td>{{rental.dueDate}}</td>
+                  <td>{{rental.advance}}</td>
+                  <td>{{rental.totalAmount}}</td>
+
+              </tr>
+          </tbody>
+      </table>
     </div>
+    <!-- <div class="row">
+      <div class="col-lg-6">
+        <div class="pull-left">
+          <div class="form-group row">
+            <label class="col-4 col-form-label"><small>Entries per page</small></label>
+            <div class="col-3">
+              <input type="number" class="form-control" [(ngModel)]="itemsPerPage" min="1" (change)="changePerPageValue(itemsPerPage)">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="pull-right">
+          <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+        </div>
+      </div>
+    </div> -->
   </div>
 
+  </div>
 </section>

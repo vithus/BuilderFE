@@ -1,3 +1,5 @@
+import { Material } from "./material";
+import { RentInReturn } from "./rentInReturn";
 import { ValidationResult } from "./validationResult";
 
 export class RentIn {
@@ -43,7 +45,15 @@ export class RentinDetail {
     quantity:number =0;
     unit:string ='';
     rentalPerUnit:number =0;
-    remark:string=''
+    remark:string='';
+    qtyToBeReturned:number =0;
+    qtyBeingReturned =0;
+    isSelected:boolean = false;
+    fullyReturned: boolean = false;
+    rentInReturns: RentInReturn[]=[];
+    material :Material|null = null;
+
+
 }
 
 

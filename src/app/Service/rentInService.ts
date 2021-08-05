@@ -18,4 +18,22 @@ export class RentInService {
     public getAll(){
         return this.http.get(`${this.baseUrl}/v1.1/api/RentIn`);
     }
+
+    public getPendingRentalReferences(lessorId:string|null=null){
+        let uri = `${this.baseUrl}/v1.1/api/RentIn/pending-rental`;
+        if(lessorId){
+            uri = uri+'?lessorId='+lessorId;
+        }
+        return this.http.get(uri);
+    }
+
+    public get(id:string, includes: string[])
+    {
+        let uri = `${this.baseUrl}/v1.1/api/RentIn/${id}`;
+        if(includes && includes.length) {
+            uri = uri+`?includes=${includes.join()}`
+        }
+        return this.http.get(uri);
+    }
+
 }
