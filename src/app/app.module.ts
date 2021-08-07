@@ -36,6 +36,7 @@ import { RentOutService } from './Service/rentoutService';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RentalPaymentComponent } from './components/add-materialreturn/rental-payment/rental-payment.component';
 import { RentinMaterialreturnComponent } from './components/rentin-materialreturn/rentin-materialreturn.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { RentinMaterialreturnComponent } from './components/rentin-materialretur
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
+    MatRadioModule,
     MatInputModule ,
     NgxPaginationModule
   

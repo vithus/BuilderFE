@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { RentIn } from '../Model/rentIn';
+import { RentIn, RentinDetail } from '../Model/rentIn';
+import { RentInReturn } from '../Model/rentInReturn';
+import { Payment } from '../Model/payment';
 
 @Injectable()
 
@@ -34,6 +36,15 @@ export class RentInService {
             uri = uri+`?includes=${includes.join()}`
         }
         return this.http.get(uri);
+    }
+
+    public returnMaterial(rentinReturns: RentInReturn[],rentalId:string|null){
+        
+        return this.http.post(`${this.baseUrl}/v1.1/api/RentIn/return-material/${rentalId}`,rentinReturns);
+    }
+    public makePayment(payment: Payment,lesseeId:string){
+        
+        return this.http.post(`${this.baseUrl}/v1.1/api/RentIn/payment/${lesseeId}`,payment);
     }
 
 }
