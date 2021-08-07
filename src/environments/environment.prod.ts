@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: "http://cyberozunu-001-site2.itempurl.com"
+
 };
