@@ -12,6 +12,11 @@ export class AddMaterialComponent implements OnInit {
   constructor(private materialService : MaterialService) { }
 
   material : Material = new Material();
+  materials: Material[]=[];
+
+  itemsPerPage = 12;
+  currentPage = 1;
+  totalItemCount = 0;
 
   ngOnInit(): void {
   }
@@ -29,6 +34,7 @@ export class AddMaterialComponent implements OnInit {
       if(!data.isError) {
         alert("Material has been created Successfully");
         this.material = new Material();
+        this.getMaterials();
         
       }
     },(error)=>{
@@ -39,5 +45,31 @@ export class AddMaterialComponent implements OnInit {
 
   cancel(){
     this.material = new Material();
+  }
+
+  pageChanged(event:any) {
+    this.materials = [];
+    this.currentPage = event;
+    this.getMaterials();
+  }
+
+  changePerPageValue(page:any) {
+    if (page != 0 && page !== null) {
+      this.materials = [];
+      this.currentPage = 1;
+      this.getMaterials();
+    }
+  }
+
+  getMaterials(){
+    this.materialService.getAll(this.currentPage, this.itemsPerPage).subscribe((data:any)=>{
+      if (!data.isError) {
+        debugger;
+        this.totalItemCount = data.result.count;
+        this.materials = data.result.data;
+      }
+    },(error)=>{
+      console.log(error);
+    })
   }
 }

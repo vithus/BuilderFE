@@ -17,8 +17,8 @@ export class MaterialService {
         return this.http.post(`${this.baseUrl}/v1.1/api/Material`,material);
     }
 
-    public getAll(){
-        return this.http.get(`${this.baseUrl}/v1.1/api/Material`);
+    public getAll(pageNumber:number, pageSize:number){
+        return this.http.get(`${this.baseUrl}/v1.1/api/Material?pageNumber=${pageNumber}&pageSize=${pageSize}`);
     }
 
     public getLessorMaterial(lessorId: string|null){
@@ -36,5 +36,6 @@ export class MaterialService {
         }
         return this.http.get(`${this.baseUrl}`+url);
     }
+    
     
 }
