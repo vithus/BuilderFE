@@ -99,7 +99,8 @@ export class AddRentinComponent implements OnInit {
          this.selectedMaterial = undefined;
          this.rentalPerUnit = 0;
          this.remark = '';
-         this.quantity = 0;
+         this.quantity = 0;      
+         
       }
     },(error)=>{
       alert("Something went wrong");

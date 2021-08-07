@@ -72,6 +72,7 @@ import { LoginComponent } from './components/login/login.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
+    MatRadioModule,
     MatInputModule ,
     NgxPaginationModule
   

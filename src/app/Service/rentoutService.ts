@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { RentOut } from '../Model/rentout';
 import { RentalReturn } from '../Model/rentalReturn';
+import { Payment } from '../Model/payment';
 
 @Injectable()
 
@@ -45,6 +46,10 @@ export class RentOutService {
         let uri = `${this.baseUrl}/v1.1/api/Rental/overdue-rental`;
       
         return this.http.get(uri);
+    }
+    public makePayment(payment: Payment,lessorId:string){
+        
+        return this.http.post(`${this.baseUrl}/v1.1/api/Rental/payment/${lessorId}`,payment);
     }
    
 }
