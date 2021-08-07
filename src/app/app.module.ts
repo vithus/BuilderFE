@@ -37,6 +37,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { RentalPaymentComponent } from './components/add-materialreturn/rental-payment/rental-payment.component';
 import { RentinMaterialreturnComponent } from './components/rentin-materialreturn/rentin-materialreturn.component';
 import { LoginComponent } from './components/login/login.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
