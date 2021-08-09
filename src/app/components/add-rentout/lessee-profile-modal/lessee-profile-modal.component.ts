@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Lessee } from 'src/app/Model/lessee';
 import { LesseePaymentInfo } from 'src/app/Model/lesseePaymentInfo';
 import { LesseeRentalDetail } from 'src/app/Model/lesseeRentalDetails';
@@ -7,32 +7,31 @@ import { LesseeService } from 'src/app/Service/lesseeService';
 import { RentOutService } from 'src/app/Service/rentoutService';
 
 @Component({
-  selector: 'app-lesseeprofile',
-  templateUrl: './lesseeprofile.component.html',
-  styleUrls: ['./lesseeprofile.component.scss']
+  selector: 'app-lessee-profile-modal',
+  templateUrl: './lessee-profile-modal.component.html',
+  styleUrls: ['./lessee-profile-modal.component.scss']
 })
-export class LesseeprofileComponent implements OnInit {
+export class LesseeProfileModalComponent implements OnInit {
 
   lesseeRentalDetails: LesseeRentalDetail[] = [];
   lesseeOverDueRentalDetails: LesseeRentalDetail[] = [];
   lesseePaymentInfo: LesseePaymentInfo = new LesseePaymentInfo();
-  lessees: Lessee[] = [];
-  isPopUp = false;
-  selectedLesseeId: string = '';
+  selectedLesseeId='';
+  selectedLessee: Lessee |null=null;
 
   constructor(private rentalService: RentOutService, private lesseeService: LesseeService,
-    ) { 
-      
-      
+    public dialogRef: MatDialogRef<LesseeProfileModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { 
+      if(data){
+        this.selectedLesseeId = data.lessee.id;
+        this.selectedLessee = data.lessee;
+      }
     }
 
   ngOnInit(): void {
-    this.getLessee();
-    if (this.selectedLesseeId) {
       this.getLesseeRentalDetails();
       this.getLesseeOverDueRentalDetails();
       this.getLesseePayment();
-    }
   }
 
   getLesseeRentalDetails() {
@@ -69,21 +68,14 @@ export class LesseeprofileComponent implements OnInit {
   }
 
 
-  getLessee() {
-    this.lesseeService.getAll().subscribe((data: any) => {
-      if (!data.isError) {
-        this.lessees = data.result.data;
-      }
-    },
-      (error) => {
-        console.log(error);
-      })
-  }
-
   viewInfo() {
     this.getLesseeRentalDetails();
     this.getLesseeOverDueRentalDetails();
     this.getLesseePayment();
 
+  }
+
+  close(){
+    this.dialogRef.close();
   }
 }

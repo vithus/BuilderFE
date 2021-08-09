@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxMaterialSpinnerService } from 'ngx-material-spinner';
 import { KeyValueModel } from 'src/app/Model/keyValueModel';
 import { Lessor } from 'src/app/Model/lessor';
 import { RentIn } from 'src/app/Model/rentIn';
@@ -27,7 +28,8 @@ export class RentinMaterialreturnComponent implements OnInit {
   returnedDate: string = '';
 
 
-  constructor(private lessorService: LessorService,private rentinService: RentInService) { }
+  constructor(private lessorService: LessorService,private rentinService: RentInService,private spinner: NgxMaterialSpinnerService
+    ) { }
 
   ngOnInit(): void {
     this.getLessor();
@@ -75,7 +77,7 @@ export class RentinMaterialreturnComponent implements OnInit {
       alert("Please select a rental");
       return;
     }   
-
+    this.spinner.show('primary');
     const includes = ['RentInDetails', 'RentInPayments']
     this.rentinService.get(this.selectedRentalId, includes).subscribe((data: any) => {
       this.rental = data.result;
@@ -88,8 +90,10 @@ export class RentinMaterialreturnComponent implements OnInit {
           element.fullyReturned = true;
         }
         element.qtyToBeReturned = element.quantity - itemCount;
+        this.spinner.hide('primary');
       });
     }, (error) => {
+      this.spinner.hide('primary');
       console.log(error);
     });
   }
@@ -97,14 +101,17 @@ export class RentinMaterialreturnComponent implements OnInit {
   returnMaterial() {
     const isValid =this.validateReturn();
     if(isValid) {
+      this.spinner.show('primary');
       var body = this.GenerateReturnBody();
       this.rentinService.returnMaterial(body,this.rental.id).subscribe((data:any)=>{
          console.log(data);
          if(!data.isError) {
            alert("The material return has been added successfully");
            this.rental = new RentIn();
+           this.spinner.hide('primary');
          }
       },(error)=>{
+        this.spinner.hide('primary');
         console.log(error);
       })
     }

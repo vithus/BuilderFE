@@ -7,6 +7,7 @@ export class Payment{
     paymentRef: string|null=null;
     reason: string|null =null;
     amount:number=0;
+    createdOn:Date|null=null;
 
     isValid(): ValidationResult {
         const result = new ValidationResult();

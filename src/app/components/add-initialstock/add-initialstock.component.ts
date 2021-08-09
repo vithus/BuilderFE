@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxMaterialSpinnerService } from 'ngx-material-spinner';
 import { Inventory } from 'src/app/Model/inventory';
 import { Material } from 'src/app/Model/material';
 import { InventoryService } from 'src/app/Service/inventoryService';
@@ -20,7 +21,8 @@ export class AddInitialstockComponent implements OnInit {
   currentPage = 1;
   totalItemCount = 0;
 
-  constructor(private materialService: MaterialService, private inventoryService: InventoryService) { }
+  constructor(private materialService: MaterialService, private inventoryService: InventoryService,private spinner: NgxMaterialSpinnerService
+    ) { }
 
 
   ngOnInit(): void {
@@ -44,18 +46,19 @@ export class AddInitialstockComponent implements OnInit {
       alert(validatedResult.message);
       return;
     }
-    
+    this.spinner.show('primary');
     this.inventoryService.addInventory(this.inventory).subscribe((data : any)=>{
       console.log(data);
       if(!data.isError) {
         alert("Material has been created Successfully");
         this.inventory = new Inventory();
         this.getStock();
-        
+        this.spinner.hide('primary');
       }
     },(error)=>{
        console.log(error);
        alert("Something went wrong. Please try again later");
+       this.spinner.hide('primary');
     })
   }
 
@@ -64,13 +67,18 @@ export class AddInitialstockComponent implements OnInit {
   }
 
   getStock() {
+    this.spinner.show('primary');
     this.materialService.getPaginatedLessorMaterial(null,this.currentPage,this.itemsPerPage).subscribe((data: any) => {
       if (!data.isError) {
         debugger;
         this.totalItemCount = data.result.count;
         this.inventoryMaterials = data.result.data;
         console.log(this.inventoryMaterials)
+        this.spinner.hide('primary');
       }
+    },(error)=>{
+      alert('Something went wrong')
+      this.spinner.hide('primary');
     })
   }
 

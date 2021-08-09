@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxMaterialSpinnerService } from 'ngx-material-spinner';
 import { Lessee } from 'src/app/Model/lessee';
 import { Lessor } from 'src/app/Model/lessor';
 import { Payment } from 'src/app/Model/payment';
@@ -27,7 +28,8 @@ export class PaymentcertificateComponent implements OnInit {
     private lesseeService: LesseeService, 
     private lessorService : LessorService,
     private rentalService: RentOutService,
-    private rentinService: RentInService) { }
+    private rentinService: RentInService,
+    private spinner: NgxMaterialSpinnerService) { }
   
   ngOnInit(): void {
     this.getLessees();
@@ -86,12 +88,15 @@ export class PaymentcertificateComponent implements OnInit {
       alert("Please select a lessee");
       return;
     } 
+    this.spinner.show('primary');
     this.rentalService.makePayment(this.payment, this.selectedLesseId).subscribe((data:any)=>{
          if(!data.isError){
            alert("Payment has been made successfully");
            this.reset();
          }
+         this.spinner.hide('primary');
     },(error)=>{
+      this.spinner.hide('primary');
       alert("something went wrong");
     });
 
@@ -103,12 +108,15 @@ export class PaymentcertificateComponent implements OnInit {
       alert("Please select a lessee");
       return;
     } 
+    this.spinner.show('primary');
     this.rentinService.makePayment(this.payment, this.selectedLessorId).subscribe((data:any)=>{
          if(!data.isError){
            alert("Payment has been made successfully");
            this.reset();
          }
+         this.spinner.hide('primary');
     },(error)=>{
+      this.spinner.hide('primary');
       alert("something went wrong");
     });
 

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import * as moment from 'moment';
+import { NgxMaterialSpinnerService } from 'ngx-material-spinner';
 import { Lessee } from 'src/app/Model/lessee';
 import { Lessor } from 'src/app/Model/lessor';
 import { Material } from 'src/app/Model/material';
@@ -8,6 +9,10 @@ import { LesseeService } from 'src/app/Service/lesseeService';
 import { LessorService } from 'src/app/Service/lessorService';
 import { MaterialService } from 'src/app/Service/materialService';
 import { RentOutService } from 'src/app/Service/rentoutService';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { LesseeprofileComponent } from '../lesseeprofile/lesseeprofile.component';
+import { LesseeProfileModalComponent } from './lessee-profile-modal/lessee-profile-modal.component';
+
 
 @Component({
   selector: 'app-add-rentout',
@@ -19,7 +24,10 @@ export class AddRentoutComponent implements OnInit {
   constructor(private lesseeService: LesseeService,
     private lessorService: LessorService,
     private materialService: MaterialService,
-    private rentOutService: RentOutService) { }
+    private rentOutService: RentOutService,
+    private spinner: NgxMaterialSpinnerService,
+    public dialog: MatDialog
+) { }
 
   materials: Material[] = [];
   lessors: Lessor[] = [];
@@ -44,13 +52,16 @@ export class AddRentoutComponent implements OnInit {
   }
 
   getLessee() {
+    this.spinner.show('primary');
     this.lesseeService.getAll().subscribe((data: any) => {
       if (!data.isError) {
         this.lessees = data.result.data;
+        this.spinner.hide('primary');
       }
     },
       (error) => {
         console.log(error);
+        this.spinner.hide('primary');
       })
   }
 
@@ -59,6 +70,7 @@ export class AddRentoutComponent implements OnInit {
     own.id = null;
     own.fullName = "Own";
     this.lessors.push(own);
+    this.spinner.show('primary');
     this.lessorService.getAll().subscribe((data: any) => {
       if (!data.isError) {
         data.result.data.forEach((e: Lessor) => {
@@ -66,9 +78,11 @@ export class AddRentoutComponent implements OnInit {
         });
         ;
       }
+      this.spinner.hide('primary');
     },
       (error) => {
         console.log(error);
+        this.spinner.hide('primary');
       })
   }
 
@@ -92,11 +106,16 @@ export class AddRentoutComponent implements OnInit {
 
   getLessorMaterial() {
     debugger;
+    this.spinner.show('primary');
     let lessorId = this.selectedLessor ? this.selectedLessor.id : null;
     this.materialService.getLessorMaterial(lessorId).subscribe((data: any) => {
       if (!data.isError) {
+        this.spinner.hide('primary');
         this.materials = data.result;
       }
+    },(error)=>{
+      this.spinner.hide('primary');
+      console.log(error);
     })
   }
 
@@ -135,14 +154,12 @@ export class AddRentoutComponent implements OnInit {
   }
 
   save() {
-   
-  debugger;
     var validationStatus = this.rentout.isValid();
     if(!validationStatus.status){
       alert(validationStatus.message);
       return;
     }
-
+    this.spinner.show('primary');
     this.rentOutService.addRentOut(this.rentout).subscribe((data: any)=>{
        if(!data.isError) {
         alert("Rentin details has been addedd successfully");
@@ -155,8 +172,10 @@ export class AddRentoutComponent implements OnInit {
         this.remark = '';
         this.quantity = 0;
        }
+       this.spinner.hide('primary');
     },(error)=>{
       alert("Something went wrong");
+      this.spinner.hide('primary');
     })
   }
 
@@ -186,5 +205,23 @@ export class AddRentoutComponent implements OnInit {
     this.rentout.dueDateString = $event.value.toLocaleDateString();
     this.calculateTotal();
   }
+
+
+  viewLesseeProfile(): void {
+    if(this.rentout.lesseeId){
+      var selectedLessee =  this.lessees.find(p=>p.id==this.rentout.lesseeId);
+      const dialogRef = this.dialog.open(LesseeProfileModalComponent, {
+        width: '100%',
+        data: {lessee: selectedLessee}
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        
+      });
+    }
+    
+  }
+
+
 
 }

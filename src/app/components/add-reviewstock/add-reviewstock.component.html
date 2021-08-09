@@ -44,8 +44,6 @@
 <section  class="content" style="margin-top: 10px;">
     <div class="card">
     <div class="row">
-        <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let material of materials | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItemCount }; let i = index">    
-        </div>
         <table class="table">
             <thead class="thead-light">
                 <tr>
@@ -85,4 +83,6 @@
         </div>
       </div>
     </div>
+<ngx-material-spinner><p>Please wait...</p></ngx-material-spinner>
+
 </section>

@@ -1,46 +1,19 @@
+<div style="height:600px; overflow:auto;">
+
 <section class="content-header">
     <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Lesee Profile</h1>
-            </div>
-            <div class="col-sm-6" >
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Lesee Profile</li>
-                </ol>
-            </div>
+        <div class="row mb-2" style="float: right;">
+            <i class="fa fa-window-close" style="cursor:pointer" (click)="close()"></i>
         </div>
-        
+    </div>
+    <div>
+        <h3>
+            {{selectedLessee?.fullName}}
+        </h3>
     </div>
     <!-- /.container-fluid -->
 </section>
 
-
-<section class="content">
-
-    <div class="card">
-        <div class="card-body">
-            <div class="col-md-12">
-
-                <div class="form-group row">
-                    <label class="col-md-1 col-form-label">Lessee</label>
-                    <div class="col-md-5">
-                        <select class="form-control" [(ngModel)]="selectedLesseeId">
-                            <option *ngFor="let item of lessees" [value]="item.id">{{item.fullName}}</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3" style="float: left;">
-                        <button type="button" class="btn btn-info add-new" (click)="viewInfo()"><i class="fa fa-eye"></i>
-                            View</button>
-                    </div>
-                </div>
-               
-
-            </div>
-        </div>
-    </div>
-</section>
 <section class="content" style="margin-top: 10px; margin-left: 10px;">
 
     <div class="col-md-12">
@@ -129,3 +102,4 @@
         </div>
     </div>
 </section>
+</div>

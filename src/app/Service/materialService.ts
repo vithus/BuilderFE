@@ -16,9 +16,18 @@ export class MaterialService {
     public addMaterial(material: Material){
         return this.http.post(`${this.baseUrl}/v1.1/api/Material`,material);
     }
+    public updateMaterial(material: Material){
+        return this.http.put(`${this.baseUrl}/v1.1/api/Material`,material);
+    }
 
-    public getAll(pageNumber:number, pageSize:number){
-        return this.http.get(`${this.baseUrl}/v1.1/api/Material?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+
+    public getAll(pageNumber?:number, pageSize?:number){
+
+        let uri = `${this.baseUrl}/v1.1/api/Material`;
+        if(pageNumber && pageSize){
+            uri = uri+ `?pageNumber=${pageNumber}&pageSize=${pageSize}`
+        }
+        return this.http.get(uri);
     }
 
     public getLessorMaterial(lessorId: string|null){
