@@ -9,11 +9,6 @@ export class TokenService {
   constructor() { }
 
 
-  handle(token: string): void {
-    // token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VyIjp7InVzZXJJZCI6IjYwZmFjYWE1YTlhNzdiYjcyNjQ1NzA3MSIsImN1c3RvbWVySWQiOiI2MGZhY2FhNWE5YTc3YmI3MjY0NTcwNzEiLCJmaXJzdF9uYW1lIjoiVGhhcnVzYW4iLCJsYXN0X25hbWUiOiJUaGFydSIsImVtYWlsIjoidGhhcnVzYW4uc3R1ZHlAZ21haWwuY29tIiwicGhvbmVfbnVtYmVyIjoiKzk0NzcxMDAwNTE2IiwicGhvbmVfbnVtYmVyX3ZlcmlmaWVkIjp0cnVlLCJUd29GYWN0b3IiOnRydWV9LCJpYXQiOjE2Mjc5MjMyODgsImV4cCI6MTYyODUyODA4OCwiYXVkIjoiNjBmYWNhYTVhOWE3N2JiNzI2NDU3MDcxIiwiaXNzIjoidGhhcnVzYW4udGsifQ.laPhsIc3cpB9AaFUEcJZBSERwlOvUU6BefA7t3BMohg';
-    this.set(token);
-  }
-
 
   set(token: string): void {
     localStorage.setItem('token', token);
@@ -40,11 +35,23 @@ export class TokenService {
     if (token) {
       const payload = this.payload(token);
       if (payload) {
-        return (payload.iss === 'UCDP' || payload.iss === 'tharusan.tk') ? true : false;
+        return (payload.iss === '19fae615-668a-4f8b-90d3-4a22f2108220_ozunu') ? true : false;
       }
     }
     return false;
   }
+
+  getFullName(): string {
+    const token = this.get();
+    if (token) {
+      const payload = this.payload(token);
+      if (payload) {
+        return payload.FirstName + ' ' + payload.LastName;
+      }
+    }
+    return '';
+  }
+
 
 
   payload(token: string): any {

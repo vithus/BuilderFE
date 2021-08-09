@@ -43,6 +43,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { LesseeProfileModalComponent } from './components/add-rentout/lessee-profile-modal/lessee-profile-modal.component';
 import { RentalDetailsModalComponent } from './Modal/rental-details-modal/rental-details-modal.component';
 import { AuthInterceptor } from './Service/interceptor/auth-interceptor.interceptor';
+import { AuthorizationService } from './Service/authorizationService';
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import { AuthInterceptor } from './Service/interceptor/auth-interceptor.intercep
     InventoryService,
     RentInService,
     RentOutService,
+    AuthorizationService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
