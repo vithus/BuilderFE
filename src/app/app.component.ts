@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { TokenService } from './Service/Auth/token.service';
 
 @Component({
@@ -11,9 +12,13 @@ export class AppComponent {
   isActive : boolean;
 
   constructor(
-    private token: TokenService
+    private token: TokenService, private router: Router
   ) {
 this.isActive = this.token.loggedIn();
-console.log(this.isActive);
+if(this.isActive){
+  this.router.navigateByUrl('/');
+}else{
+  this.router.navigateByUrl('/login');
+}
    }
 }
