@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TokenService } from './Service/Auth/token.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'shan-template';
+  title = 'BuilderFe';
+  isActive : boolean;
+
+  constructor(
+    private token: TokenService
+  ) {
+this.isActive = this.token.loggedIn();
+console.log(this.isActive);
+   }
 }

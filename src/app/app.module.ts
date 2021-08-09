@@ -20,7 +20,7 @@ import { LesseeOutstandingComponent } from './components/lessee-outstanding/less
 import { StockAtStoreComponent } from './components/stock-at-store/stock-at-store.component';
 import { FormsModule } from '@angular/forms';
 import { LessorService } from './Service/lessorService';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LesseeService } from './Service/lesseeService';
 import { AddMaterialComponent } from './components/add-material/add-material.component';
 import { MaterialService } from './Service/materialService';
@@ -42,6 +42,7 @@ import { NgxMaterialSpinnerModule } from "ngx-material-spinner";
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { LesseeProfileModalComponent } from './components/add-rentout/lessee-profile-modal/lessee-profile-modal.component';
 import { RentalDetailsModalComponent } from './Modal/rental-details-modal/rental-details-modal.component';
+import { AuthInterceptor } from './Service/interceptor/auth-interceptor.interceptor';
 
 
 @NgModule({
@@ -84,8 +85,7 @@ import { RentalDetailsModalComponent } from './Modal/rental-details-modal/rental
     MatInputModule ,
     NgxPaginationModule,
     NgxMaterialSpinnerModule,
-    MatDialogModule,
-    
+    MatDialogModule
   ],
   providers: [
     LessorService,
@@ -93,7 +93,8 @@ import { RentalDetailsModalComponent } from './Modal/rental-details-modal/rental
     MaterialService,
     InventoryService,
     RentInService,
-    RentOutService
+    RentOutService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

@@ -24,32 +24,34 @@ import { AddMaterialComponent } from './components/add-material/add-material.com
 import { AddRentinComponent } from './components/add-rentin/add-rentin.component';
 import { RentinMaterialreturnComponent } from './components/rentin-materialreturn/rentin-materialreturn.component';
 import { LoginComponent } from './components/login/login.component';
+import { CanActiveService } from './Service/Auth/can-active.service';
+import { DeActiveService } from './Service/Auth/de-active.service';
 
 const routes: Routes = [
   //{path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-  {path: '', pathMatch: 'full', redirectTo: 'login' },
-  {path: 'login', component: LoginComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'add-lessee', component: AddLesseeComponent},
-  {path: 'add-lessor', component: AddLessorComponent},
-  {path: 'add-worksite', component: AddWorksiteComponent},
-  {path: 'add-supplier', component: AddSupplierComponent},
-  {path: 'add-rentout', component: AddRentoutComponent},
-  {path:'add-rentin',component: AddRentinComponent},
-  {path: 'add-materialreturn', component: AddMaterialreturnComponent},
-  {path: 'add-materialtranfer', component: AddMaterialtranferComponent},
-  {path: 'add-materialpurchase', component: AddMaterialpurchaseComponent},
-  {path: 'add-materialconsumable', component: AddMaterialconsumableComponent},
-  {path: 'paymentcertificate', component: PaymentcertificateComponent},
-  {path: 'paymentreview', component: PaymentreviewComponent},
-  {path: 'add-initialstock', component: AddInitialstockComponent},
-  {path: 'add-material', component: AddMaterialComponent},
+  //{path: '', pathMatch: 'full', redirectTo: 'login' },
+  {path: '', component: DashboardComponent, canActivate:[CanActiveService]},
+  {path: 'login', component: LoginComponent, canActivate:[DeActiveService]},  
+  {path: 'add-lessee', component: AddLesseeComponent, canActivate:[CanActiveService]},
+  {path: 'add-lessor', component: AddLessorComponent, canActivate:[CanActiveService]},
+  {path: 'add-worksite', component: AddWorksiteComponent, canActivate:[CanActiveService]},
+  {path: 'add-supplier', component: AddSupplierComponent, canActivate:[CanActiveService]},
+  {path: 'add-rentout', component: AddRentoutComponent, canActivate:[CanActiveService]},
+  {path:'add-rentin',component: AddRentinComponent, canActivate:[CanActiveService]},
+  {path: 'add-materialreturn', component: AddMaterialreturnComponent, canActivate:[CanActiveService]},
+  {path: 'add-materialtranfer', component: AddMaterialtranferComponent, canActivate:[CanActiveService]},
+  {path: 'add-materialpurchase', component: AddMaterialpurchaseComponent, canActivate:[CanActiveService]},
+  {path: 'add-materialconsumable', component: AddMaterialconsumableComponent, canActivate:[CanActiveService]},
+  {path: 'paymentcertificate', component: PaymentcertificateComponent, canActivate:[CanActiveService]},
+  {path: 'paymentreview', component: PaymentreviewComponent, canActivate:[CanActiveService]},
+  {path: 'add-initialstock', component: AddInitialstockComponent, canActivate:[CanActiveService]},
+  {path: 'add-material', component: AddMaterialComponent, canActivate:[CanActiveService]},
 
-  {path: 'add-reviewstock', component: AddReviewstockComponent},
-  {path: 'lesseeprofile', component: LesseeprofileComponent},
-  {path: 'lessee-outstanding', component: LesseeOutstandingComponent},
-  {path: 'stock-at-store', component: StockAtStoreComponent},
-  {path: 'rentin-materialreturn', component: RentinMaterialreturnComponent},
+  {path: 'add-reviewstock', component: AddReviewstockComponent, canActivate:[CanActiveService]},
+  {path: 'lesseeprofile', component: LesseeprofileComponent, canActivate:[CanActiveService]},
+  {path: 'lessee-outstanding', component: LesseeOutstandingComponent, canActivate:[CanActiveService]},
+  {path: 'stock-at-store', component: StockAtStoreComponent, canActivate:[CanActiveService]},
+  {path: 'rentin-materialreturn', component: RentinMaterialreturnComponent, canActivate:[CanActiveService]},
 
 ];
 
