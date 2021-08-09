@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Lessee</label>
+                            <label>Lessor</label>
                             <select class="form-control" [(ngModel)]="selectedLessorId" (change)="getReferences()">
                                 <option *ngFor="let item of lessors" [value]="item.id">{{item.fullName}}</option>
                             </select>
@@ -114,5 +114,5 @@
         </div>
         <br/>
     </div>
-    
+    <ngx-material-spinner><p>Please wait...</p></ngx-material-spinner>
 </section>

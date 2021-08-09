@@ -20,76 +20,65 @@
     <div class="card">
         <div class="card-body">
 
-            <form>
-
                 <div class="form-group row">
-                    <div class="col-sm-7 col-md-8"></div>
-                    <label class="col-sm-2 col-md-1 col-form-label">Ref.no</label>
-                    <div class="col-sm-3 col-sm-3">
-                        <input type="text" class="form-control">
-                    </div>
+                    <mat-radio-group aria-label="Select an option"  #radioGroup="matRadioGroup">
+                        <mat-radio-button value="1" (change)="payeeChanged(1)" [checked]="true">Lessee</mat-radio-button> &nbsp;
+                        <mat-radio-button value="2" (change)="payeeChanged(2)">Lessor</mat-radio-button>
+                    </mat-radio-group>
                 </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Select Type</label>
+                <div class="form-group row" *ngIf="selectedPayee==1">
+                    <label class="col-sm-2 col-form-label">Select Lessee</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control">
-                    </div>
+                        <select class="form-control" [(ngModel)]="selectedLesseId">
+                            <option *ngFor="let item of lessees" [value]="item.id">{{item.fullName}}</option>
+                        </select>
+                    </div>                  
                 </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Payment Type</label>
+                <div class="form-group row" *ngIf="selectedPayee==2">
+                    <label class="col-sm-2 col-form-label">Select Lessor</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control">
+                        <select class="form-control" [(ngModel)]="selectedLessorId">
+                            <option *ngFor="let item of lessors" [value]="item.id">{{item.fullName}}</option>
+                        </select>
                     </div>
                 </div>
-
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Payee / Payor Type</label>
+                    <label class="col-sm-2 col-form-label">Payment Mode</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control">
+                        <select class="form-control" [(ngModel)]="payment.paymentMode">
+                            <option *ngFor="let item of patmentMode" [value]="item.id">{{item.type}}</option>
+                        </select>
                     </div>
                 </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Payment (To / From)</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
-
+      
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Name Of the Payee/Payor</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" [(ngModel)]="payment.payeeOrPayor">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Amount</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control"  [(ngModel)]="payment.amount">
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Payment Mode</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
+                
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Payment Ref</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" [(ngModel)]="payment.paymentRef">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Reason/Ref</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" [(ngModel)]="payment.reason">
                     </div>
                 </div>
 
@@ -97,24 +86,15 @@
                     <div class="col-10 offset-2">
                         <div class="row">
                             <div class="col-3">
-                                <button class="btn btn-sm btn-success btn-block">Save</button>
-                            </div>
-                            <div class="col-3">
-                                <button class="btn btn-sm btn-info btn-block">Print</button>
-                            </div>
+                                <button class="btn btn-sm btn-success btn-block" (click)="makePayment()">Save</button>
+                            </div>                       
                             <div class="col-3">
                                 <button class="btn btn-sm btn-danger btn-block">Cancel</button>
-                            </div>
-                            <div class="col-3">
-                                <button class="btn btn-sm btn-dark btn-block">Back to menu</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </form>
-
         </div>
     </div>
-
+    <ngx-material-spinner><p>Please wait...</p></ngx-material-spinner>
 </section>

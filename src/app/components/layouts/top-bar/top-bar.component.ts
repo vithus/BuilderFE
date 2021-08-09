@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from 'src/app/Service/Auth/token.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tokenService : TokenService) { }
 
   ngOnInit(): void {
   }
 
+  logout(){
+    this.tokenService.remove();
+    window.location.reload();
+  }
 }

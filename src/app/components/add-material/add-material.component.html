@@ -2,7 +2,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Add Lessee</h1>
+          <h1>Material</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -50,7 +50,7 @@
             <div class="col-10 offset-2">
               <div class="row">
                 <div class="col-3">
-                  <button class="btn btn-sm btn-success btn-block" (click)="save()">Save</button>
+                  <button class="btn btn-sm btn-success btn-block" (click)="save()">{{material.id?'Update':'Save'}}</button>
                 </div>            
                 <div class="col-3">
                   <button class="btn btn-sm btn-danger btn-block" (click)="cancel()">Cancel</button>
@@ -60,5 +60,49 @@
           </div>
       </div>
     </div>
+
+    <div class="card">
+      <div class="row">
+          
+          <table class="table">
+              <thead class="thead-light">
+                  <tr>
+                      <th scope="col">S/No</th>
+                      <th scope="col">Material</th>
+                      <th scope="col">Unit</th>
+                      <th scope="col">Rental Per Unit</th>  
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let material of materials | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItemCount }; let i = index">
+                      <td>{{material.code}}</td>
+                      <td>{{material.name}}</td>
+                      <td>{{material.unit}}</td>
+                      <td>{{material.rentalPrice}}</td>
+                      <td><i class="fa fa-edit" style="cursor: pointer;" (click)="setForEdit(material)"></i></td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="pull-left">
+              <div class="form-group row">
+                <label class="col-4 col-form-label"><small>Entries per page</small></label>
+                <div class="col-3">
+                  <input type="number" class="form-control" [(ngModel)]="itemsPerPage" min="1" (change)="changePerPageValue(itemsPerPage)">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="pull-right">
+              <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ngx-material-spinner><p>Please wait while saving...</p></ngx-material-spinner>
+
   </section>
-  

@@ -16,8 +16,16 @@ export class LessorService {
     public addLessor(lessor: Lessor){
         return this.http.post(`${this.baseUrl}/v1.1/api/Lessor`,lessor);
     }
-    public getAll(){
-        return this.http.get(`${this.baseUrl}/v1.1/api/Lessor`);
+    public updateLessor(lessor: Lessor){
+        return this.http.put(`${this.baseUrl}/v1.1/api/Lessor`,lessor);
+    }
+ 
+    public getAll( pageNumber:number|null=null, pageSize:number|null=null){
+        let url =`/v1.1/api/Lessor`;
+        if(pageNumber && pageSize){
+            url = url + `?pageSize=${pageSize}&pageNumber=${pageNumber}`;     
+        }
+        return this.http.get(`${this.baseUrl}`+url);
     }
     
 }

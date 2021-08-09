@@ -16,7 +16,14 @@ export class LesseeService {
     public addLessee(lessee: Lessee){
         return this.http.post(`${this.baseUrl}/v1.1/api/Lessee`,lessee);
     }
-    public getAll(){
-        return this.http.get(`${this.baseUrl}/v1.1/api/Lessee`);
+    public getAll( pageNumber:number|null=null, pageSize:number|null=null){
+        let url =`/v1.1/api/Lessee`;
+        if(pageNumber && pageSize){
+            url = url + `?pageSize=${pageSize}&pageNumber=${pageNumber}`;     
+        }
+        return this.http.get(`${this.baseUrl}`+url);
+    }
+    public updateLessee(lessee: Lessee){
+        return this.http.put(`${this.baseUrl}/v1.1/api/Lessee`,lessee);
     }
 }

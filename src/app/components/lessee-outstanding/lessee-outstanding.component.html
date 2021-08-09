@@ -1,1 +1,74 @@
-<p>lessee-outstanding works!</p>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Lesee Outstanding</h1>
+            </div>
+            <div class="col-sm-6" >
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Lesee Outstanding</li>
+                </ol>
+            </div>
+        </div>
+        
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<section class="content">
+
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-md-1 col-form-label">Lessee</label>
+                    <div class="col-md-5">
+                        <select class="form-control" [(ngModel)]="selectedLesseeId">
+                            <option *ngFor="let item of lessees" [value]="item.id">{{item.fullName}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3" style="float: left;">
+                        <button type="button" class="btn btn-info add-new" (click)="viewOutstandingRentals()"><i class="fa fa-eye"></i>
+                            View</button>
+                    </div>
+                </div>             
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Ref no</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Due date</th>
+                            <th scope="col">Total Amount</th>
+                            <th scope="col">Paid</th>
+                            <th scope="col">Pending</th>
+                            <th scope="col">Remark</th>
+                            <th scope="col">Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of rentOuts ; let i = index">
+                            <td>{{item.referenceNo}}</td>
+                            <td>{{item.date | date}}</td>
+                            <td>{{item.dueDate | date}}</td>
+                            <td>Rs.&nbsp;{{item.totalAmount}}</td>
+                            <td>Rs.&nbsp;{{item.paidAmount}}</td>
+                            <td>Rs.&nbsp;{{item.totalAmount - item.paidAmount}}</td>
+                            <td>{{item.remark}}</td>
+                            <td><i class="fa fa-eye" aria-hidden="true" style="cursor: pointer;" (click)="viewDetail(item)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <ngx-material-spinner><p>Please wait...</p></ngx-material-spinner>
+
+</section>

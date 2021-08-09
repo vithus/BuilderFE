@@ -20,7 +20,7 @@ import { LesseeOutstandingComponent } from './components/lessee-outstanding/less
 import { StockAtStoreComponent } from './components/stock-at-store/stock-at-store.component';
 import { FormsModule } from '@angular/forms';
 import { LessorService } from './Service/lessorService';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LesseeService } from './Service/lesseeService';
 import { AddMaterialComponent } from './components/add-material/add-material.component';
 import { MaterialService } from './Service/materialService';
@@ -37,6 +37,16 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { RentalPaymentComponent } from './components/add-materialreturn/rental-payment/rental-payment.component';
 import { RentinMaterialreturnComponent } from './components/rentin-materialreturn/rentin-materialreturn.component';
 import { LoginComponent } from './components/login/login.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { NgxMaterialSpinnerModule } from "ngx-material-spinner";
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { LesseeProfileModalComponent } from './components/add-rentout/lessee-profile-modal/lessee-profile-modal.component';
+import { RentalDetailsModalComponent } from './Modal/rental-details-modal/rental-details-modal.component';
+import { AuthInterceptor } from './Service/interceptor/auth-interceptor.interceptor';
+import { AuthorizationService } from './Service/authorizationService';
+import { ToastrModule } from 'ngx-toastr';
+import { NotificationService } from './Service/notificationService';
+
 
 @NgModule({
   declarations: [
@@ -61,7 +71,9 @@ import { LoginComponent } from './components/login/login.component';
     AddRentinComponent,
     RentalPaymentComponent,
     RentinMaterialreturnComponent,
-    LoginComponent
+    LoginComponent,
+    LesseeProfileModalComponent,
+    RentalDetailsModalComponent
   ],
   imports: [
     BrowserModule,
@@ -72,9 +84,13 @@ import { LoginComponent } from './components/login/login.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
+    MatRadioModule,
     MatInputModule ,
-    NgxPaginationModule
-  
+    NgxPaginationModule,
+    NgxMaterialSpinnerModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     LessorService,
@@ -82,7 +98,10 @@ import { LoginComponent } from './components/login/login.component';
     MaterialService,
     InventoryService,
     RentInService,
-    RentOutService
+    RentOutService,
+    AuthorizationService,
+    NotificationService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

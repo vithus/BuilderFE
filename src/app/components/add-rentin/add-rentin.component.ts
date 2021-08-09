@@ -6,6 +6,7 @@ import { MaterialService } from 'src/app/Service/materialService';
 import * as moment from 'moment';
 import 'moment/locale/pt-br';
 import { RentInService } from 'src/app/Service/rentInService';
+import { NgxMaterialSpinnerService } from 'ngx-material-spinner';
 
 @Component({
   selector: 'app-add-rentin',
@@ -17,7 +18,9 @@ export class AddRentinComponent implements OnInit {
   constructor(
     private materialService: MaterialService,
     private lessorService: LessorService,
-    private rentInService: RentInService
+    private rentInService: RentInService,
+    private spinner: NgxMaterialSpinnerService
+
     ) { }
 
   lessors: any[] =[];
@@ -90,7 +93,7 @@ export class AddRentinComponent implements OnInit {
       alert(validationStatus.message);
       return;
     }
-  debugger;
+    this.spinner.show('primary');
     this.rentInService.addRentIn(this.rentIn).subscribe((data:any)=>{
       if(!data.result.isError){
          alert("Rentin details has been addedd successfully");
@@ -99,9 +102,12 @@ export class AddRentinComponent implements OnInit {
          this.selectedMaterial = undefined;
          this.rentalPerUnit = 0;
          this.remark = '';
-         this.quantity = 0;
+         this.quantity = 0;      
+         
       }
+      this.spinner.hide('primary');
     },(error)=>{
+      this.spinner.hide('primary');
       alert("Something went wrong");
     })
 } 
