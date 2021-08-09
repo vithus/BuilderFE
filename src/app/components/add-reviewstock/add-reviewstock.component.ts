@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxMaterialSpinnerService } from 'ngx-material-spinner';
 import { Lessor } from 'src/app/Model/lessor';
 import { Material } from 'src/app/Model/material';
 import { LessorService } from 'src/app/Service/lessorService';
@@ -12,7 +13,9 @@ import { MaterialService } from 'src/app/Service/materialService';
 export class AddReviewstockComponent implements OnInit {
 
   constructor(private lessorService : LessorService,
-    private materialService: MaterialService) { }
+    private materialService: MaterialService,
+    private spinner: NgxMaterialSpinnerService
+) { }
 
   lessors:Lessor[] =[];
   selectedLessor : Lessor|undefined = undefined;
@@ -45,13 +48,17 @@ export class AddReviewstockComponent implements OnInit {
       })
   }
   getStock() {
+    this.spinner.show('primary');
     this.selectedLessorId = this.selectedLessor ? this.selectedLessor.id : null;
     this.materialService.getPaginatedLessorMaterial(this.selectedLessorId,this.currentPage,this.itemsPerPage).subscribe((data: any) => {
       if (!data.isError) {
         debugger;
         this.totalItemCount = data.result.count;
         this.materials = data.result.data;
+        this.spinner.hide('primary');
       }
+    },(error)=>{
+      this.spinner.hide('primary');
     })
   }
 

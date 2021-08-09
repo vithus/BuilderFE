@@ -5,6 +5,7 @@ import { ValidationResult } from "./validationResult";
 export class RentIn {
 
     id:string|null = null;
+    referenceNo:number|null=null;
     lessorId: string = '';
     dateString:string ='';
     dueDateString: string =  '';

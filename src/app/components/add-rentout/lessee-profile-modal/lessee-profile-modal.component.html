@@ -1,0 +1,105 @@
+<div style="height:600px; overflow:auto;">
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2" style="float: right;">
+            <i class="fa fa-window-close" style="cursor:pointer" (click)="close()"></i>
+        </div>
+    </div>
+    <div>
+        <h3>
+            {{selectedLessee?.fullName}}
+        </h3>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<section class="content" style="margin-top: 10px; margin-left: 10px;">
+
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label" style="font-size: 20px !important;">Pending
+                                Payments :</label>
+                            <div class="col-sm-6 col-form-label">
+                                <label style="font-size: 20px !important;">Rs.
+                                    &nbsp;{{lesseePaymentInfo.pendingPayments}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label" style="font-size: 20px !important;">Upcoming
+                                Payments :</label>
+                            <div class="col-sm-6 col-form-label">
+                                <label style="font-size: 20px !important;">Rs.
+                                    &nbsp;{{lesseePaymentInfo.upcomingPayments}}</label>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h3>Materials</h3>
+                        <div class="row">
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Material</th>
+                                        <th scope="col">Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of lesseeRentalDetails ; let i = index">
+                                        <td>{{item.material}}</td>
+                                        <td>{{item.quantity}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Overdue Materials</h3>
+                        <div class="row">
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Material</th>
+                                        <th scope="col">Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="color: red;">
+                                    <tr *ngFor="let item of lesseeOverDueRentalDetails ; let i = index">
+                                        <td>{{item.material}}</td>
+                                        <td>{{item.quantity}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>

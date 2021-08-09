@@ -1,20 +1,24 @@
 import * as moment from "moment";
 import { Material } from "./material";
+import { Payment } from "./payment";
 import { RentalReturn } from "./rentalReturn";
-import { RentoutPayment } from "./rentoutPayments";
 import { ValidationResult } from "./validationResult";
 
 export class RentOut{
     id:string|null=null;
+    referenceNo:number|null=null;
     lesseeId:string | null = null;
     dateString:string ='';
     dueDateString: string =  '';
+    date: Date|null=null;
+    dueDate: Date|null=null;
     advance: number = 0;
     transportCharge:number = 0;
     labourCharge: number =0;
     totalAmount: number =0;
+    paidAmount: number =0;
     rentalDetails : RentalDetail[] = [];
-    rentalPayments:RentoutPayment[] = [];
+    rentalPayments:Payment[] = [];
     remark:string='';
 
     isValid(): ValidationResult {

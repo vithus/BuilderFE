@@ -1,5 +1,6 @@
 import { NumberInput } from '@angular/cdk/coercion';
 import { Component, OnInit } from '@angular/core';
+import { NgxMaterialSpinnerService } from 'ngx-material-spinner';
 import { KeyValueModel } from 'src/app/Model/keyValueModel';
 import { Lessee } from 'src/app/Model/lessee';
 import { RentalReturn } from 'src/app/Model/rentalReturn';
@@ -15,7 +16,8 @@ import { RentOutService } from 'src/app/Service/rentoutService';
 })
 export class AddMaterialreturnComponent implements OnInit {
 
-  constructor(private lesseeService: LesseeService, private rentalService: RentOutService) { }
+  constructor(private lesseeService: LesseeService, private rentalService: RentOutService,private spinner: NgxMaterialSpinnerService
+    ) { }
 
   selectedLesseId: string | null = null;
   selectedRentalId: string = '';
@@ -52,18 +54,19 @@ export class AddMaterialreturnComponent implements OnInit {
     reference.key = null;
     reference.value = null;
     this.rentalDetails.push(reference);
-
+    this.spinner.show('primary');
     this.rentalService.getPendingRentalReferences(this.selectedLesseId).subscribe((data: any) => {
       if (!data.isError && data.result) {
         this.rentalDetails.push()
          data.result.forEach((dtl: KeyValueModel) => {
            this.rentalDetails.push(dtl);
          });
-        console.log(this.rentalDetails);
+         this.spinner.hide('primary');
       }
     },
       (error) => {
-        console.log(error);
+        this.spinner.hide('primary');
+        alert('Something went wrong');
       })
   }
 
@@ -73,6 +76,7 @@ export class AddMaterialreturnComponent implements OnInit {
       return;
     }   
 
+    this.spinner.show('primary');
     const includes = ['RentalDetails', 'RentalPayments']
     this.rentalService.get(this.selectedRentalId, includes).subscribe((data: any) => {
       this.rental = data.result;
@@ -86,7 +90,9 @@ export class AddMaterialreturnComponent implements OnInit {
         }
         element.qtyToBeReturned = element.quantity - itemCount;
       });
+      this.spinner.hide('primary');
     }, (error) => {
+      this.spinner.hide('primary');
       console.log(error);
     });
   }
@@ -94,14 +100,17 @@ export class AddMaterialreturnComponent implements OnInit {
   returnMaterial() {
     const isValid =this.validateReturn();
     if(isValid) {
+      this.spinner.show('primary');
       var body = this.GenerateReturnBody();
       this.rentalService.returnMaterial(body,this.rental.id).subscribe((data:any)=>{
          console.log(data);
          if(!data.isError) {
            alert("The material return has been added successfully");
            this.rental = new RentOut();
+           this.spinner.hide('primary');
          }
       },(error)=>{
+        this.spinner.hide('primary');
         console.log(error);
       })
     }

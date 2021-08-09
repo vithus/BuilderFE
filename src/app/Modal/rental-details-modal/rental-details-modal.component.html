@@ -1,0 +1,131 @@
+<div style="height:600px; overflow:auto;">
+    <section class="content-header">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Rental Details</h4>
+            </div>
+            <div class="col-md-6">
+                <div style="float: right !important;">
+                    <i class="fa fa-window-close" style="cursor:pointer" (click)="close()"></i>
+                </div>
+            </div>
+        </div>
+       
+      
+        <!-- /.container-fluid -->
+    </section>
+    <section>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Reference</label>
+                                <div class="col-sm-8">
+                                    <label class="col-form-label">:&nbsp;Ref &nbsp; {{rental.referenceNo}} </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Date</label>
+                                <div class="col-sm-8">
+                                    <label class="col-form-label">:&nbsp;{{rental.date | date}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Due Date</label>
+                                <div class="col-sm-8">
+                                    <label class="col-form-label">:&nbsp;{{rental.dueDate| date}} </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Transport Charges(Rs)</label>
+                                <div class="col-sm-8">
+                                    <label class="col-form-label">:&nbsp;{{rental.transportCharge}} </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Loading Charges(Rs)</label>
+                                <div class="col-sm-8">
+                                    <label class="col-form-label">:&nbsp;{{rental.labourCharge}} </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Total Amount)</label>
+                                <div class="col-sm-8">
+                                    <label class="col-form-label">:&nbsp;{{rental.totalAmount}} </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Paid Amount)</label>
+                                <div class="col-sm-8">
+                                    <label class="col-form-label">:&nbsp;{{rental.paidAmount}} </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card" >
+                        <div class="card-body">
+                            <h5>Payments</h5>
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Mode</th>
+                                        <th scope="col">Ref</th>
+                                        <th scope="col">Reason</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody *ngIf="rental.rentalPayments.length">
+                                    <tr *ngFor="let item of rental.rentalPayments; let i = index">
+                                        <th scope="row">{{item.createdOn| date}}</th>
+                                        <td>Rs.&nbsp;{{item.amount}}</td>
+                                        <td>{{item.paymentMode==1?'Cash':'Cheque'}}</td>
+                                        <td>{{item.paymentRef}}</td>
+                                        <td>{{item.reason}}</td>                                      
+                                    </tr>
+                                </tbody>
+                                <div *ngIf="!rental.rentalPayments.length" style="text-align: center !important;">
+                                    No payments made.
+                                </div>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5>Materials</h5>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">S/No</th>
+                            <th scope="col">Material</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Unit</th>
+                            <th scope="col">Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of rental.rentalDetails; let i = index">
+                            <th scope="row">{{item.material?.code}}</th>
+                            <td>{{item.material?.name}}</td>
+                            <td>{{item.qtyToBeReturned}}</td>
+                            <td>{{item.material?.unit}}</td>
+                            <td>{{item.remark}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
