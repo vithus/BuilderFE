@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,  
-  baseUrl: "http://cyberozunu-001-site2.itempurl.com"
+  baseUrl: "https://tecoro.api.cyberozunu.com"
 
 };
 
