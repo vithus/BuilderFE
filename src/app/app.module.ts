@@ -44,6 +44,8 @@ import { LesseeProfileModalComponent } from './components/add-rentout/lessee-pro
 import { RentalDetailsModalComponent } from './Modal/rental-details-modal/rental-details-modal.component';
 import { AuthInterceptor } from './Service/interceptor/auth-interceptor.interceptor';
 import { AuthorizationService } from './Service/authorizationService';
+import { ToastrModule } from 'ngx-toastr';
+import { NotificationService } from './Service/notificationService';
 
 
 @NgModule({
@@ -86,7 +88,9 @@ import { AuthorizationService } from './Service/authorizationService';
     MatInputModule ,
     NgxPaginationModule,
     NgxMaterialSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     LessorService,
@@ -96,6 +100,7 @@ import { AuthorizationService } from './Service/authorizationService';
     RentInService,
     RentOutService,
     AuthorizationService,
+    NotificationService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import { Inventory } from 'src/app/Model/inventory';
 import { Material } from 'src/app/Model/material';
 import { InventoryService } from 'src/app/Service/inventoryService';
 import { MaterialService } from 'src/app/Service/materialService';
+import { NotificationService } from 'src/app/Service/notificationService';
 
 @Component({
   selector: 'app-add-initialstock',
@@ -21,7 +22,11 @@ export class AddInitialstockComponent implements OnInit {
   currentPage = 1;
   totalItemCount = 0;
 
-  constructor(private materialService: MaterialService, private inventoryService: InventoryService,private spinner: NgxMaterialSpinnerService
+  constructor(
+    private materialService: MaterialService, 
+    private inventoryService: InventoryService,
+    private spinner: NgxMaterialSpinnerService,
+    private notificationService : NotificationService
     ) { }
 
 
@@ -55,9 +60,8 @@ export class AddInitialstockComponent implements OnInit {
         this.getStock();
         this.spinner.hide('primary');
       }
-    },(error)=>{
-       console.log(error);
-       alert("Something went wrong. Please try again later");
+    },(error:any)=>{
+       this.notificationService.showError(error.error.detail,'Error');
        this.spinner.hide('primary');
     })
   }
