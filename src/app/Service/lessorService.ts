@@ -19,11 +19,13 @@ export class LessorService {
     public updateLessor(lessor: Lessor){
         return this.http.put(`${this.baseUrl}/v1.1/api/Lessor`,lessor);
     }
- 
-    public getAll( pageNumber:number|null=null, pageSize:number|null=null){
-        let url =`/v1.1/api/Lessor`;
+    public deleteLessor(lessorId: string){
+        return this.http.delete(`${this.baseUrl}/v1.1/api/Lessor/${lessorId}`);
+    }
+    public getAll( pageNumber:number|null=null, pageSize:number|null=null,searchText:string=''){
+        let url =`/v1.1/api/Lessor?[Filter]FullName:like=${searchText}`;
         if(pageNumber && pageSize){
-            url = url + `?pageSize=${pageSize}&pageNumber=${pageNumber}`;     
+            url = url + `&pageSize=${pageSize}&pageNumber=${pageNumber}`;     
         }
         return this.http.get(`${this.baseUrl}`+url);
     }

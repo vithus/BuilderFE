@@ -19,151 +19,169 @@
 
     <div class="card">
         <div class="card-body">
-                <div class="form-group row">
-                    <div class="col-sm-7 col-md-8"></div>
-                    <label class="col-sm-2 col-md-1 col-form-label">Ref.no</label>
-                    <div class="col-sm-3 col-sm-3">
-                        <input type="text" class="form-control" [(ngModel)]="lessor.id">
-                    </div>
+            <div class="form-group row" *ngIf="lessor.referenceNo">
+                <div class="col-sm-7 col-md-8"></div>
+                <label class="col-sm-2 col-md-1 col-form-label">Ref.no</label>
+                <div class="col-sm-3 col-sm-3">
+                    <input type="text" class="form-control" [ngModel]="'LH-'+lessor.referenceNo" disabled>
                 </div>
+            </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Name in Short</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="lessor.shortName">
-                    </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Name in Short</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="lessor.shortName">
                 </div>
+            </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Full Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="lessor.fullName">
-                    </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Full Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="lessor.fullName">
                 </div>
+            </div>
 
-                <h6 class="my-4"><b>Name of the organization if any</b></h6>
+            <h6 class="my-4"><b>Name of the organization if any</b></h6>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="lessor.organizationName">
-                    </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="lessor.organizationName">
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Details of Registration</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="lessor.registrationDetail">
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Details of Registration</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="lessor.registrationDetail">
                 </div>
+            </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">NIC No</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="lessor.identityNo"> 
-                    </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">NIC No</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="lessor.identityNo">
                 </div>
+            </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Address</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="lessor.address">
-                    </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Address</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="lessor.address">
                 </div>
+            </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Contact No 1</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="lessor.contactNo1">
-                    </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Contact No 1</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="lessor.contactNo1">
                 </div>
+            </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Contact No 2</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="lessor.contactNo2">
-                    </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Contact No 2</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="lessor.contactNo2">
                 </div>
+            </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Agreement Ref</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="lessor.agreementRef">
-                    </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Agreement Ref</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="lessor.agreementRef">
                 </div>
+            </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Remarks</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="lessor.remarks">
-                    </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Remarks</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="lessor.remarks">
                 </div>
+            </div>
 
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Others</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="lessor.others">
-                    </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Others</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="lessor.others">
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-10 offset-2">
-                        <div class="row">
-                            <div class="col-3">
-                                <button class="btn btn-sm btn-success btn-block" (click)="save()">{{lessor.id?'Update':'Save'}}</button>
-                            </div>                         
-                            <div class="col-3">
-                                <button class="btn btn-sm btn-danger btn-block" (click)="cancel()">Cancel</button>
-                            </div>                     
+            <div class="row">
+                <div class="col-10 offset-2">
+                    <div class="row">
+                        <div class="col-3">
+                            <button class="btn btn-sm btn-success btn-block"
+                                (click)="save()">{{lessor.id?'Update':'Save'}}</button>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-sm btn-danger btn-block" (click)="cancel()">Cancel</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
         </div>
     </div>
     <div class="card">
-        <div class="row">
-            <table class="table">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Contact</th>
-                        <th scope="col">NIC No</th>
-                        <th scope="col">Organization</th>  
-                        <th scope="col">Remark</th>  
-                        <th></th>          
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let lessor of lessors | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItemCount }; let i = index">
-                        <td>{{lessor.shortName}}</td>
-                        <td>{{lessor.contactNo1}}</td>
-                        <td>{{lessor.identityNo}}</td>
-                        <td>{{lessor.organizationName}}</td>
-                        <td>{{lessor.remarks}}</td>
-                        <td><i class="fa fa-edit" style="cursor: pointer;" (click)="setForEdit(lessor)"></i></td>
-
-                    </tr>
-                </tbody>
-            </table>
-          </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="pull-left">
-                <div class="form-group row">
-                  <label class="col-4 col-form-label"><small>Entries per page</small></label>
-                  <div class="col-3">
-                    <input type="number" class="form-control" [(ngModel)]="itemsPerPage" min="1" (change)="changePerPageValue(itemsPerPage)">
-                  </div>
+        <div class="card-body">
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label">Search</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" [(ngModel)]="searchText" (change)="getLessors()">
                 </div>
-              </div>
             </div>
-            <div class="col-lg-6">
-              <div class="pull-right">
-                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-              </div>
+            <div class="row">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Ref</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">NIC No</th>
+                            <th scope="col">Organization</th>
+                            <th scope="col">Remark</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let lessor of lessors | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItemCount }; let i = index">
+                            <td>LH-{{lessor.referenceNo}}</td>
+                            <td>{{lessor.shortName}}</td>
+                            <td>{{lessor.contactNo1}}</td>
+                            <td>{{lessor.identityNo}}</td>
+                            <td>{{lessor.organizationName}}</td>
+                            <td>{{lessor.remarks}}</td>
+                            <td><i class="fa fa-edit" style="cursor: pointer;" (click)="setForEdit(lessor)"></i></td>
+                            <td><i class="fa fa-trash" style="cursor: pointer; color: red;"
+                                    (click)="delete(lessor)"></i></td>
+
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-          </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="pull-left">
+                        <div class="form-group row">
+                            <label class="col-4 col-form-label"><small>Entries per page</small></label>
+                            <div class="col-3">
+                                <input type="number" class="form-control" [(ngModel)]="itemsPerPage" min="1"
+                                    (change)="changePerPageValue(itemsPerPage)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="pull-right">
+                        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                    </div>
+                </div>
+            </div>
         </div>
-    <ngx-material-spinner><p>Please wait...</p></ngx-material-spinner>
+    </div>
+    <ngx-material-spinner>
+        <p>Please wait...</p>
+    </ngx-material-spinner>
 
 </section>

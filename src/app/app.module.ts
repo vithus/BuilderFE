@@ -46,6 +46,7 @@ import { AuthInterceptor } from './Service/interceptor/auth-interceptor.intercep
 import { AuthorizationService } from './Service/authorizationService';
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationService } from './Service/notificationService';
+import { ConfirmationModalComponent } from './Modal/confirmation-modal/confirmation-modal.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { NotificationService } from './Service/notificationService';
     RentinMaterialreturnComponent,
     LoginComponent,
     LesseeProfileModalComponent,
-    RentalDetailsModalComponent
+    RentalDetailsModalComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,

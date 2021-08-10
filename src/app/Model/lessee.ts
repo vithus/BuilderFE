@@ -2,6 +2,7 @@ import { ValidationResult } from "./validationResult";
 
 export class Lessee {
     id:string |null=null;
+    referenceNo:number|null=null;
     shortName : string ='';
     fullName : string='';
     identityNo: string ='';

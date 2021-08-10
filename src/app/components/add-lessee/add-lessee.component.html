@@ -18,154 +18,166 @@
 
   <div class="card">
     <div class="card-body">
-        <div class="form-group row">
-          <div class="col-sm-7 col-md-8"></div>
-          <label class="col-sm-2 col-md-1 col-form-label">Ref.no</label>
-          <div class="col-sm-3 col-sm-3">
-            <input type="text" class="form-control">
-          </div>
-         </div>
-
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Name in Short</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.shortName">
-          </div>
+      <div class="form-group row" *ngIf="lessee.referenceNo">
+        <div class="col-sm-7 col-md-8"></div>
+        <label class="col-sm-2 col-md-1 col-form-label">Ref.no</label>
+        <div class="col-sm-3 col-sm-3">
+          <input type="text" class="form-control" [ngModel]="'L-'+lessee.referenceNo" disabled>
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Full Name</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.fullName ">
-          </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Name in Short</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.shortName">
         </div>
+      </div>
 
-        <h6 class="my-4"><b>Name of the organization if any</b></h6>
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Name</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.organizationName">
-          </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Full Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.fullName ">
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">NIC No</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.identityNo">
-          </div>
+      <h6 class="my-4"><b>Name of the organization if any</b></h6>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.organizationName">
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Address</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.address">
-          </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">NIC No</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.identityNo">
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Contact No 1</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.contactNo1">
-          </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.address">
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Contact No 2</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.contactNo2">
-          </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Contact No 1</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.contactNo1">
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Agreement Ref</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.agreementRef">
-          </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Contact No 2</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.contactNo2">
         </div>
+      </div>
 
-        <h6 class="my-4"><b>Gurantor Details</b></h6>
-
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Name</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.gurantorName">
-          </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Agreement Ref</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.agreementRef">
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Contact No</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.gurantorContactNo">
-          </div>
+      <h6 class="my-4"><b>Gurantor Details</b></h6>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.gurantorName">
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">NIC No</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.gurantorIdentityNo ">
-          </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Contact No</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.gurantorContactNo">
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Address</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.gurantorAddress ">
-          </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">NIC No</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.gurantorIdentityNo ">
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Remarks</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.remarks">
-          </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.gurantorAddress ">
         </div>
+      </div>
 
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Others</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="lessee.others">
-          </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Remarks</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.remarks">
         </div>
+      </div>
 
-        <div class="row">
-          <div class="col-10 offset-2">
-            <div class="row">
-              <div class="col-3">
-                <button class="btn btn-sm btn-success btn-block" (click)="save()">{{lessee.id?'Update':'Save'}}</button>
-              </div>            
-              <div class="col-3">
-                <button class="btn btn-sm btn-danger btn-block" (click)="cancel()">Cancel</button>
-              </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Others</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="lessee.others">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-10 offset-2">
+          <div class="row">
+            <div class="col-3">
+              <button class="btn btn-sm btn-success btn-block" (click)="save()">{{lessee.id?'Update':'Save'}}</button>
+            </div>
+            <div class="col-3">
+              <button class="btn btn-sm btn-danger btn-block" (click)="cancel()">Cancel</button>
             </div>
           </div>
         </div>
+      </div>
     </div>
   </div>
   <div class="card">
-    <div class="row">
+    <div class="card-body">
+      <div class="form-group row">
+        <label class="col-sm-1 col-form-label">Search</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" [(ngModel)]="searchText" (change)="getLessees()">
+        </div>
+      </div>
+      <div class="row">
+
+  
         <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Contact</th>
-                    <th scope="col">NIC No</th>
-                    <th scope="col">Organization</th>  
-                    <th scope="col">Remark</th> 
-                    <th></th>         
-                    <th></th>  
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let lessee of lessees | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItemCount }; let i = index">
-                    <td>{{lessee.shortName}}</td>
-                    <td>{{lessee.contactNo1}}</td>
-                    <td>{{lessee.identityNo}}</td>
-                    <td>{{lessee.organizationName}}</td>
-                    <td>{{lessee.remarks}}</td>
-                    <td><i class="fa fa-edit" style="cursor: pointer;" (click)="setForEdit(lessee)"></i></td>
-                    <td><i class="fa fa-trash" style="cursor: pointer; color: red;" (click)="setForEdit(lessee)"></i></td>
-                </tr>
-            </tbody>
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Ref</th>
+              <th scope="col">Name</th>
+              <th scope="col">Contact</th>
+              <th scope="col">NIC No</th>
+              <th scope="col">Organization</th>
+              <th scope="col">Remark</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let lessee of lessees | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItemCount }; let i = index">
+              <td>L-{{lessee.referenceNo}}</td>
+              <td>{{lessee.shortName}}</td>
+              <td>{{lessee.contactNo1}}</td>
+              <td>{{lessee.identityNo}}</td>
+              <td>{{lessee.organizationName}}</td>
+              <td>{{lessee.remarks}}</td>
+              <td><i class="fa fa-edit" style="cursor: pointer;" (click)="setForEdit(lessee)"></i></td>
+              <td><i class="fa fa-trash" style="cursor: pointer; color: red;" (click)="delete(lessee)"></i></td>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div class="row">
@@ -174,7 +186,8 @@
             <div class="form-group row">
               <label class="col-4 col-form-label"><small>Entries per page</small></label>
               <div class="col-3">
-                <input type="number" class="form-control" [(ngModel)]="itemsPerPage" min="1" (change)="changePerPageValue(itemsPerPage)">
+                <input type="number" class="form-control" [(ngModel)]="itemsPerPage" min="1"
+                  (change)="changePerPageValue(itemsPerPage)">
               </div>
             </div>
           </div>
@@ -186,5 +199,8 @@
         </div>
       </div>
     </div>
-  <ngx-material-spinner><p>Please wait...</p></ngx-material-spinner>
+  </div>
+  <ngx-material-spinner>
+    <p>Please wait...</p>
+  </ngx-material-spinner>
 </section>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NgxMaterialSpinnerService } from 'ngx-material-spinner';
+import { ConfirmationModalComponent } from 'src/app/Modal/confirmation-modal/confirmation-modal.component';
 import { Lessee } from 'src/app/Model/lessee';
 import { LesseeService } from 'src/app/Service/lesseeService';
 
@@ -17,8 +19,9 @@ export class AddLesseeComponent implements OnInit {
   currentPage = 1;
   totalItemCount = 0;
 
-  constructor(private lesseeService : LesseeService,private spinner: NgxMaterialSpinnerService
-    ) { }
+  searchText:string='';
+  constructor(private lesseeService : LesseeService,private spinner: NgxMaterialSpinnerService,
+    public dialog: MatDialog ) { }
 
 
   ngOnInit(): void {
@@ -94,7 +97,7 @@ export class AddLesseeComponent implements OnInit {
   }
   getLessees() {
     this.spinner.show('primary');
-    this.lesseeService.getAll(this.currentPage,this.itemsPerPage).subscribe((data:any)=>{
+    this.lesseeService.getAll(this.currentPage,this.itemsPerPage,this.searchText).subscribe((data:any)=>{
       if (!data.isError) {
         debugger;
         this.totalItemCount = data.result.count;
@@ -112,4 +115,30 @@ export class AddLesseeComponent implements OnInit {
     lessee.isValid = this.lessee.isValid;
     this.lessee = lessee;
   }
+
+  delete(lessee:Lessee){
+    {
+      const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+        width: '350px',
+        data: {text: 'Do you want to delete?'}
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+          if(result == true){
+                this.spinner.show();
+                this.lesseeService.deleteLessee(String(lessee.id)).subscribe((data:any)=>{
+                   if(!data.isError) {
+                       this.getLessees();
+                       alert("Lessee deleted successfully");
+                   }
+                   this.spinner.hide('primary');
+                }, (error)=>{
+                  this.spinner.hide('primary');
+                  alert("something went wrong");
+                })
+          }
+      });
+    }
+  }
+  
 }

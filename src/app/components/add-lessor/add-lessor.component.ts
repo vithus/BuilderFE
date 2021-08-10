@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { LessorService } from 'src/app/Service/lessorService';
 import { Lessor } from 'src/app/Model/lessor';
 import { NgxMaterialSpinnerService } from 'ngx-material-spinner';
+import { ConfirmationModalComponent } from 'src/app/Modal/confirmation-modal/confirmation-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-lessor',
@@ -18,7 +20,10 @@ export class AddLessorComponent implements OnInit {
   currentPage = 1;
   totalItemCount = 0;
 
-  constructor(private lessorService: LessorService, private spinner: NgxMaterialSpinnerService) { }
+  searchText:string='';
+
+  constructor(private lessorService: LessorService, private spinner: NgxMaterialSpinnerService, 
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getLessors();
@@ -94,7 +99,7 @@ export class AddLessorComponent implements OnInit {
   }
   getLessors() {
     this.spinner.show('primary');
-    this.lessorService.getAll(this.currentPage, this.itemsPerPage).subscribe((data: any) => {
+    this.lessorService.getAll(this.currentPage, this.itemsPerPage,this.searchText).subscribe((data: any) => {
       if (!data.isError) {
         debugger;
         this.totalItemCount = data.result.count;
@@ -111,5 +116,30 @@ export class AddLessorComponent implements OnInit {
   setForEdit(lessor: Lessor) {
     lessor.isValid = this.lessor.isValid;
     this.lessor = lessor;
+  }
+
+  delete(lesor:Lessor){
+    {
+      const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+        width: '350px',
+        data: {text: 'Do you want to delete?'}
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+          if(result == true){
+                this.spinner.show();
+                this.lessorService.deleteLessor(String(lesor.id)).subscribe((data:any)=>{
+                   if(!data.isError) {
+                       this.getLessors();
+                       alert("Lessee deleted successfully");
+                   }
+                   this.spinner.hide('primary');
+                }, (error)=>{
+                  this.spinner.hide('primary');
+                  alert("something went wrong");
+                })
+          }
+      });
+    }
   }
 }
