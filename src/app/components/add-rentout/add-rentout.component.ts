@@ -222,6 +222,21 @@ export class AddRentoutComponent implements OnInit {
     
   }
 
+  cancel() {
+    this.rentout = new RentOut();
+    this.selectedMaterialId = '';
+    this.selectedMaterial = undefined;
+    this.selectedLessorId = '';
+    this.selectedLessor = undefined;
+    this.rentalPerUnit = 0;
+    this.remark = '';
+    this.quantity = 0;
+  }
+
+  print() {
+    window.print();
+  }
+
 
 
 }
